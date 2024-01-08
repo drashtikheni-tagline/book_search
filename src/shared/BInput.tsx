@@ -1,14 +1,16 @@
-import { TextField } from "@mui/material";
+import { TextField, styled, TextFieldProps } from "@mui/material";
 import React from "react";
 
-type BInputProps = React.ComponentProps<typeof TextField>;
+const StyledTextField = styled(TextField)({
+  "& .MuiInputBase-input": {
+    padding: 10,
+  },
+});
+
+type BInputProps = TextFieldProps;
 
 const BInput: React.FC<BInputProps> = (props) => {
-  return (
-    <div>
-      <TextField {...props} />
-    </div>
-  );
+  return <StyledTextField {...props} />;
 };
 
 export default BInput;
