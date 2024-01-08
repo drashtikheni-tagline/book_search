@@ -1,18 +1,19 @@
+import { Container } from "@mui/material";
 import {
   RELEVANCE,
   RELEVANCE_SORT_TITLE,
-  YEAR,
   YEAR_SORT_TITLE,
 } from "../constants/book.constant";
-import { Container } from "@mui/material";
 import booksContainer from "../container/books.container";
 import BButton from "../shared/BButton";
 import BInput from "../shared/BInput";
 import BStack from "../shared/BStack";
+import { equal, ternary } from "../utils/typescript";
 import BookDetails from "./Book";
 
 const Books = () => {
-  const { books, loading, query, onSearch, onSortChange } = booksContainer();
+  const { books, sortBy, loading, query, onSearch, onSortChange } =
+    booksContainer();
 
   return (
     <Container maxWidth="lg">
@@ -23,11 +24,12 @@ const Books = () => {
           onChange={onSearch}
           placeholder="Search for a book..."
         />
-        <BButton onClick={() => onSortChange(RELEVANCE)} disabled={loading}>
-          {RELEVANCE_SORT_TITLE}
-        </BButton>
-        <BButton onClick={() => onSortChange(YEAR)} disabled={loading}>
-          {YEAR_SORT_TITLE}
+        <BButton onClick={onSortChange} disabled={loading}>
+          {ternary(
+            equal(sortBy, RELEVANCE),
+            YEAR_SORT_TITLE,
+            RELEVANCE_SORT_TITLE
+          )}
         </BButton>
       </BStack>
 
