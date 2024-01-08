@@ -7,3 +7,5 @@ export const gt = (param1: number, param2: number = 0): boolean =>
   param1 > param2;
 
 export const equal = <T>(obj1: T, obj2: T): boolean => obj1 === obj2;
+
+export const head = <T>(obj: T[]): T | undefined => obj?.[0];

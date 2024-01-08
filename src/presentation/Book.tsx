@@ -6,6 +6,7 @@ import {
   JOIN_LITERATURE,
   NOT_PROVIDED,
 } from "../constants/index.constant";
+import { head } from "../utils/typescript";
 
 const BookDetails: React.FC<{ book: Book }> = ({ book }) => {
   return (
@@ -21,7 +22,7 @@ const BookDetails: React.FC<{ book: Book }> = ({ book }) => {
           First Published: {book.first_publish_year || NOT_PROVIDED}
         </Typography>
         <Typography variant="body1" component="p">
-          ISBN: {book.isbn?.join(JOIN_LITERATURE) || NOT_PROVIDED}
+          ISBN: {head(book.isbn) || NOT_PROVIDED}
         </Typography>
         <Typography variant="body1" component="p">
           Number of Pages: {book.number_of_pages_median || EMPTY_COUNT}
