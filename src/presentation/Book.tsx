@@ -17,17 +17,26 @@ const BookDetails: React.FC<{ book: Book }> = ({ book }) => {
         <BTypography variant="h5" component="h3">
           {book.title}
         </BTypography>
-        <BTypography variant="body1" component="p">
+        <BTypography variant="body1" component="p" color="natural.gray">
           Authors: {book.author_name?.join(JOIN_LITERATURE) || NOT_PROVIDED}
         </BTypography>
-        <BTypography variant="body1" component="p">
-          First Published: {book.first_publish_year || NOT_PROVIDED}
+        <BTypography variant="body2" component="p">
+          First Published:{" "}
+          <BTypography variant="body2" component="span" fontWeight="600">
+            {book.first_publish_year || NOT_PROVIDED}
+          </BTypography>
         </BTypography>
-        <BTypography variant="body1" component="p">
-          ISBN: {head(book.isbn) || NOT_PROVIDED}
+        <BTypography variant="body2" component="p">
+          ISBN:{" "}
+          <BTypography variant="body2" component="span" fontWeight="600">
+            {head(book.isbn) || NOT_PROVIDED}
+          </BTypography>
         </BTypography>
-        <BTypography variant="body1" component="p">
-          Number of Pages: {book.number_of_pages_median || EMPTY_COUNT}
+        <BTypography variant="body2" component="p">
+          Number of Pages:{" "}
+          <BTypography variant="body2" component="span" fontWeight="600">
+            {book.number_of_pages_median || EMPTY_COUNT}
+          </BTypography>
         </BTypography>
       </CardContent>
     </BCard>

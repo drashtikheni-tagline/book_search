@@ -51,7 +51,7 @@ const color: ColorPalette = {
 const theme: Theme = createTheme({
   palette: {
     primary: {
-      main: "#C89696",
+      main: "#6ca12b",
       blue: "#1F2454",
       darkBlue: "#0C0F27",
     },
@@ -63,28 +63,7 @@ const theme: Theme = createTheme({
     },
     natural: {
       main: "#B0D9B1",
-      gray: "#79849926",
-    },
-    info: {
-      main: "#D0E7D2",
-      light: "#e1f5e3",
-      dark: "#2c652c",
-    },
-    white: {
-      main: "#FFFFFF",
-      light: "#ffffff4f",
-    },
-    warning: {
-      main: "#ffafaf",
-      light: "#ffd0d0",
-    },
-    error: {
-      main: "#df0000",
-      light: "#ff7373",
-    },
-    black: {
-      main: "#000000",
-      dark: "#166D3B",
+      gray: "#a4a4a4",
     },
   } as ThemePalette,
   components: {
