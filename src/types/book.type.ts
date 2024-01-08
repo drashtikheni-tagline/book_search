@@ -5,3 +5,5 @@ export interface Book {
   isbn: string[];
   number_of_pages_median: number;
 }
+
+export type SortOption = "relevance" | "year";
