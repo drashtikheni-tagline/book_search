@@ -6,13 +6,12 @@ import {
 } from "../constants/book.constant";
 import booksContainer from "../container/books.container";
 import BButton from "../shared/BButton";
+import BGrid from "../shared/BGrid";
 import BInput from "../shared/BInput";
+import BLoader from "../shared/BLoader";
 import BStack from "../shared/BStack";
 import { equal, ternary } from "../utils/typescript";
 import BookDetails from "./Book";
-import BGrid from "../shared/BGrid";
-import BTypography from "../shared/BTypography";
-import BLoader from "../shared/BLoader";
 
 const Books = () => {
   const { books, sortBy, loading, query, onSearch, onSortChange } =
