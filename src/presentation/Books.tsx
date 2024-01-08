@@ -4,36 +4,39 @@ import {
   YEAR,
   YEAR_SORT_TITLE,
 } from "../constants/book.constant";
+import { Container } from "@mui/material";
 import booksContainer from "../container/books.container";
+import BButton from "../shared/BButton";
+import BInput from "../shared/BInput";
+import BStack from "../shared/BStack";
 import BookDetails from "./Book";
 
 const Books = () => {
   const { books, loading, query, onSearch, onSortChange } = booksContainer();
 
   return (
-    <div>
-      <input
-        type="text"
-        value={query}
-        onChange={onSearch}
-        placeholder="Search for a book..."
-      />
-
-      <div>
-        <button onClick={() => onSortChange(RELEVANCE)} disabled={loading}>
+    <Container maxWidth="lg">
+      <BStack direction="row" alignItems="center" spacing={3}>
+        <BInput
+          type="text"
+          value={query}
+          onChange={onSearch}
+          placeholder="Search for a book..."
+        />
+        <BButton onClick={() => onSortChange(RELEVANCE)} disabled={loading}>
           {RELEVANCE_SORT_TITLE}
-        </button>
-        <button onClick={() => onSortChange(YEAR)} disabled={loading}>
+        </BButton>
+        <BButton onClick={() => onSortChange(YEAR)} disabled={loading}>
           {YEAR_SORT_TITLE}
-        </button>
-      </div>
+        </BButton>
+      </BStack>
 
       {!loading ? (
         books.map((book, index) => <BookDetails book={book} key={index} />)
       ) : (
         <p>Loading</p>
       )}
-    </div>
+    </Container>
   );
 };
 
