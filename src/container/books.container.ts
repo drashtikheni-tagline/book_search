@@ -21,7 +21,7 @@ const booksContainer = () => {
     const fetchBooks = async () => {
       setLoading(true);
       const response = await axios.get(
-        `${process.env.REACT_APP_API_ENDPOINT}/search.json?q=${query}`
+        `https://openlibrary.org/search.json?q=${query}`
       );
       setBooks(response.data.docs);
       setLoading(false);
