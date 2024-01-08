@@ -1,5 +1,7 @@
+import { EMPTY_COUNT } from "../constants/index.constant";
+
 export const length = <T>(obj: T[] | null | undefined): number =>
-  obj?.length || 0;
+  obj?.length || EMPTY_COUNT;
 
 export const gt = (param1: number, param2: number = 0): boolean =>
   param1 > param2;

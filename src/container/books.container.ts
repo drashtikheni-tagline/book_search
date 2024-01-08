@@ -1,10 +1,13 @@
 import axios from "axios";
 import { SetStateAction, useEffect, useState } from "react";
 import { Book, SortOption } from "../types/book.type";
+import { RELEVANCE } from "../constants/book.constant";
+import { equal } from "../utils/typescript";
+import { EMPTY_COUNT } from "../constants/index.constant";
 
 const booksContainer = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [sortBy, setSortBy] = useState<SortOption>("relevance");
+  const [sortBy, setSortBy] = useState<SortOption>(RELEVANCE);
   const [query, setQuery] = useState<string>("");
   const [books, setBooks] = useState<Book[]>([]);
 
@@ -25,9 +28,9 @@ const booksContainer = () => {
     return () => clearTimeout(timer);
   }, [query]);
 
-  const sortedBooks = [...books].sort((a, b) => {
-    if (sortBy === "relevance") return 0;
-    else return b.first_publish_year - a.first_publish_year;
+  const sortedBooks = [...books].sort((first, second) => {
+    if (equal(sortBy, RELEVANCE)) return EMPTY_COUNT;
+    else return second.first_publish_year - first.first_publish_year;
   });
 
   const onSearch = (e: { target: { value: SetStateAction<string> } }) =>

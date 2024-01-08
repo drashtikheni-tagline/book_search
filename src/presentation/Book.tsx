@@ -1,6 +1,11 @@
 import React, { memo } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import { Book } from "../types/book.type";
+import {
+  EMPTY_COUNT,
+  JOIN_LITERATURE,
+  NOT_PROVIDED,
+} from "../constants/index.constant";
 
 const BookDetails: React.FC<{ book: Book }> = ({ book }) => {
   return (
@@ -10,16 +15,16 @@ const BookDetails: React.FC<{ book: Book }> = ({ book }) => {
           {book.title}
         </Typography>
         <Typography variant="body1" component="p">
-          Authors: {book.author_name?.join(", ") || "Not Provided"}
+          Authors: {book.author_name?.join(JOIN_LITERATURE) || NOT_PROVIDED}
         </Typography>
         <Typography variant="body1" component="p">
-          First Published: {book.first_publish_year || "Not Provided"}
+          First Published: {book.first_publish_year || NOT_PROVIDED}
         </Typography>
         <Typography variant="body1" component="p">
-          ISBN: {book.isbn?.join(", ") || "Not Provided"}
+          ISBN: {book.isbn?.join(JOIN_LITERATURE) || NOT_PROVIDED}
         </Typography>
         <Typography variant="body1" component="p">
-          Number of Pages: {book.number_of_pages_median || 0}
+          Number of Pages: {book.number_of_pages_median || EMPTY_COUNT}
         </Typography>
       </CardContent>
     </Card>
