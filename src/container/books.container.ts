@@ -1,16 +1,21 @@
 import axios from "axios";
 import { SetStateAction, useCallback, useEffect, useState } from "react";
 import { RELEVANCE, YEAR } from "../constants/book.constant";
-import { EMPTY_COUNT } from "../constants/index.constant";
+import {
+  DEFAULT_DEBOUNCE_TIMEOUT,
+  EMPTY_ARRAY,
+  EMPTY_COUNT,
+  EMPTY_VALUE,
+} from "../constants/index.constant";
 import { Book, SortOption } from "../types/book.type";
-import { equal, ternary } from "../utils/typescript";
+import { equal, isEmpty, ternary } from "../utils/typescript";
 
 const booksContainer = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<SortOption>(RELEVANCE);
-  const [query, setQuery] = useState<string>("");
-  const [books, setBooks] = useState<Book[]>([]);
-  const [sortedBooks, setSortedBooks] = useState<Book[]>([]);
+  const [query, setQuery] = useState<string>(EMPTY_VALUE);
+  const [books, setBooks] = useState<Book[]>(EMPTY_ARRAY);
+  const [sortedBooks, setSortedBooks] = useState<Book[]>(EMPTY_ARRAY);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -23,8 +28,9 @@ const booksContainer = () => {
     };
 
     const timer = setTimeout(() => {
-      fetchBooks();
-    }, 500);
+      if (!isEmpty(query)) fetchBooks();
+      else setBooks([]);
+    }, DEFAULT_DEBOUNCE_TIMEOUT);
 
     return () => clearTimeout(timer);
   }, [query]);

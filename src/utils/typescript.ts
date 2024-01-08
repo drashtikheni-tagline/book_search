@@ -1,4 +1,4 @@
-import { EMPTY_COUNT } from "../constants/index.constant";
+import { EMPTY_COUNT, EMPTY_VALUE, STRING } from "../constants/index.constant";
 
 export const length = <T>(obj: T[] | null | undefined): number =>
   obj?.length || EMPTY_COUNT;
@@ -12,3 +12,11 @@ export const head = <T>(obj: T[]): T | undefined => obj?.[0];
 
 export const ternary = <T>(bool: boolean, truthy: T, falsy: T): T =>
   bool ? truthy : falsy;
+
+export const isEmpty = (value: any): boolean => {
+  if (equal(value, null) || equal(value, undefined)) return true;
+  if (equal(typeof value, STRING) && equal(value.trim(), EMPTY_VALUE))
+    return true;
+  if (Array.isArray(value) && equal(length(value), EMPTY_COUNT)) return true;
+  return false;
+};
